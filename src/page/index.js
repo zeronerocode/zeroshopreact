@@ -1,0 +1,5 @@
+export { default as CustomerLogin } from './customer/login'
+export { default as CustomerRegister } from './customer/register'
+export { default as Home} from './Home'
+export { default as Product} from './Product'
+export { default as SellProduct} from './SellProduct'

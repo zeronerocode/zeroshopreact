@@ -1,0 +1,45 @@
+/* @font-face {
+    font-family: metropolis;
+    src: url(../font/metropolis/Metropolis-Regular.otf);
+}
+
+html body {
+    background-color: white;
+    font-family: metropolis;
+} */
+
+.form {
+    margin-top: 20px;
+}
+
+.btn-input {
+    border-radius: 40px;
+}
+
+.button-group .btn{
+    width: 123px;
+    height: 48px;
+    margin-left: -5px;
+}
+
+.form-group input{
+   border-color:  #9B9B9B ;
+
+}
+
+.form-group input:focus::placeholder {
+    color: transparent;
+  }
+
+
+.form input {
+    padding-left: 10px;
+    height: 48px;
+    border: 1px solid #9B9B9B;
+    filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05));
+    border-radius: 4px;
+}
+
+.lgn {
+    margin-top: 120px;
+}
