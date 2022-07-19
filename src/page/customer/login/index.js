@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './login.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../configs/redux/actions/userAction'
-import { useNavigate, } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 
 const CustomerLogin = () => {
     const navigate = useNavigate()
@@ -60,7 +60,7 @@ const CustomerLogin = () => {
                     <button className='btn btn-input btn-success bg-danger col-lg-4'>{isLoading ? 'loading..': 'Login'}</button>
                 </div>
                 <div className="detail">
-                    <p>Don't have account ? <span><a href="./register" class="text-danger">Register</a></span> </p>
+                    <p>Don't have account ? <span><Link to={"/user/register"} class="text-danger">Register</Link></span> </p>
                 </div>
             </form>
         </div>

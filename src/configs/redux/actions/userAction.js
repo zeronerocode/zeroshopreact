@@ -21,6 +21,7 @@ export const registerUser =(dataForm, navigate)=> async(dispatch)=>{
         const result = await axios.post('http://localhost:4000/user/register',dataForm)
         const user = result.data.data
         dispatch({type: 'USER_REGISTER_SUCCESS', payload: user})
+        navigate('/user/login')
     } catch(error){
         console.log(error);
     }

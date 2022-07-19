@@ -1,52 +1,40 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import { Navbar, Card } from '../../components'
-import axios from "axios";
+import { Navbar, Card, Category } from '../../components'
+import { useSelector, useDispatch } from "react-redux";
+import { getProduct } from '../../configs/redux/actions/productAction'
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
-  const [product, setProduct] = useState([]);
-  async function fetchData() {
-    try {
-      const result = await axios({
-        method: "GET",
-        baseURL: process.env.REACT_APP_API_BACKEND,
-        url: "/products",
-      });
-      setProduct(result.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const [page, setPage] = useState({
+    currentPage: 1,
+    limit: 6,
+  })
+  const navigate = useNavigate()
+  const { data, isLoading } = useSelector((state) => state.product);
+  const dispatch = useDispatch()
   useEffect(() => {
-    fetchData()
-  }, []);
+    dispatch(getProduct({
+      page: page.currentPage,
+      limit: page.limit
+    }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
 
   return (
     <div>
       <Navbar />
       <div className='container my-5'>
-        <h2>Category</h2>
-        <p style={{ color: 'gray' }}>What are you currently looking for</p>
+        <Category/>
       </div>
       <div className='container my-5'>
         <h2>New</h2>
         <p style={{ color: 'gray' }}>You’ve never seen it before!</p>
         <div className='row d-flex justify-content-between'>
-          <div className='col-md-2'>
-            <Card />
-          </div>
-          <div className='col-md-2'>
-            <Card />
-          </div>
-          <div className='col-md-2'>
-            <Card />
-          </div>
-          <div className='col-md-2'>
-            <Card />
-          </div>
-          <div className='col-md-2'>
-            {product.map((item) => (
-              <div className="card" key={item.id} style={{width: '208px'}}>
+          {data.map((item) => (
+            <div className='col-md-2'>
+              <div className="card" onClick={() => navigate('/product/'+item.id)} key={item.id} style={{ width: '208px' }}>
                 <img className="card-img-top" src={item.photo} alt="Card" />
                 <div className="card-body">
                   <h5 className="card-title">{item.name}</h5>
@@ -54,8 +42,8 @@ const Home = () => {
                   <p className="card-text"><small className="text-muted">Zalora Cloth</small></p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 

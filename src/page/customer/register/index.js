@@ -4,6 +4,7 @@ import { registerUser } from '../../../configs/redux/actions/userAction'
 import './register.css'
 import { useNavigate, } from 'react-router-dom'
 
+
 const CustomerRegister = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
