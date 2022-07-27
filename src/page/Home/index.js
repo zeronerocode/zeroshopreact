@@ -32,7 +32,7 @@ const Home = () => {
         <h2>New</h2>
         <p style={{ color: 'gray' }}>You’ve never seen it before!</p>
         <div className='row d-flex justify-content-between'>
-          {data.map((item) => (
+          {isLoading ? 'loading' : data && data.map((item) => (
             <div className='col-md-2'>
               <div className="card" onClick={() => navigate('/product/'+item.id)} key={item.id} style={{ width: '208px' }}>
                 <img className="card-img-top" src={item.photo} alt="Card" />

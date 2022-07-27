@@ -1,6 +1,7 @@
 import * as string from '../string.js'
 const initialState = {
     data: [],
+    detail: null,
     pagination: {
         currentPage: 0,
         limit: 0,
@@ -17,48 +18,47 @@ const productReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true
             }
-        case string.GET_PRODUCT_SUCCESS: {
+        case string.GET_PRODUCT_SUCCESS: 
             return {
                 ...state,
                 ...action.payload,
                 isLoading: false
             }
-        }
         case string.GET_PRODUCT_ERROR:
             return {
                 ...state,
                 error: action.payload,
                 isLoading: false
             }
-        case action.type === "ADD_PRODUCT_PENDING":
+        case string.ADD_PRODUCT_PENDING:
             return {
                 ...state,
                 isLoading: true
             }
-        case action.type === "ADD_PRODUCT_SUCCESS":
+        case string.ADD_PRODUCT_SUCCESS:
             return {
                 ...state,
-                ...action.payload,
+                data: action.payload,
                 isLoading: false
             }
-        case action.type === "ADD_PRODUCT_ERROR":
+        case string.ADD_PRODUCT_ERROR:
             return {
                 ...state,
                 error: action.payload,
                 isLoading: false
             }
-        case action.type === "GET_DETAIL_PRODUCT_PENDING":
+        case string.GET_DETAIL_PRODUCT_PENDING:
             return {
                 ...state,
                 isLoading: true
             }
-        case action.type === "GET_DETAIL_PRODUCT_SUCCESS":
+        case string.GET_DETAIL_PRODUCT_SUCCESS:
             return {
                 ...state,
-                ...action.payload,
+                detail : action.payload,
                 isLoading: false
             }
-        case action.type === "GET_DETAIL_PRODUCT_ERROR":
+        case string.GET_DETAIL_PRODUCT_ERROR:
             return {
                 ...state,
                 error: action.payload,

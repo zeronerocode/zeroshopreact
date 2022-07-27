@@ -5,43 +5,52 @@ import { Navbar } from '../../components'
 import { useSelector, useDispatch } from "react-redux";
 import { insertProduct } from '../../configs/redux/actions/productAction'
 import { useNavigate, } from 'react-router-dom'
+import axios from 'axios';
 
 const sellProduct = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { isLoading } = useSelector((state) => state.product)
+    const [imagePreview, setImagePreview] = useState('');
     const [formProduct, setFormProduct] = useState({
         name: '',
         price: '',
         stock: '',
         description: '',
         idCategory: '',
-        filename: 'photo-1653926772255-1de17b40-c750-40ed-a618-ca2c5ee79da0 1.png'
+        photo: '',
     })
-    const [photo, setImage] = useState("");
-    const [filename, setImageName] = useState("Choose file");
+    const onImageUpload = (e) => {
+        const file = e.target.files[0];
+        setFormProduct({
+            photo: file
+        })
+        console.log("photo =>",file);
+        setImagePreview(URL.createObjectURL(file));
+      };
+
     const handleChange = (e) => {
         setFormProduct({
             ...formProduct,
             [e.target.name]: e.target.value
         })
     }
-    const onFileChange = (e) => {
-        setImage(e.target.files[0]);
-        setImageName(e.target.files[0].name);
-    };
-    const handleAddProduct = (e) => {
+
+    const handleAddProduct = async (e) => {
         e.preventDefault()
         const dataForm = new FormData()
-        dataForm.append('filename',formProduct.filename)
-        dataForm.append('name',formProduct.name)
-        dataForm.append('price',formProduct.price)
-        dataForm.append('stock',formProduct.stock)
-        dataForm.append('description',formProduct.description)
-        dataForm.append('idCategory',formProduct.idCategory)
-        console.log(dataForm);
-        dispatch(insertProduct(dataForm, navigate))
-
+        dataForm.append('name', formProduct.name)
+        dataForm.append('photo', formProduct.photo)
+        dataForm.append('price', formProduct.price)
+        dataForm.append('stock', formProduct.stock)
+        dataForm.append('description', formProduct.description)
+        dataForm.append('idCategory', formProduct.idCategory)
+        console.log(formProduct.photo);
+        // dispatch(insertProduct(dataForm, navigate))
+        const { data } = await axios.post('http://localhost:4000/products', dataForm, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
     }
     return (
         <div>
@@ -128,14 +137,14 @@ const sellProduct = () => {
                                 <div className="col-md-11 photo">
                                     <div className="row d-flex justify-content-between">
                                         <div className="col-md-2 photo-1">
+                                        
                                         </div>
                                     </div>
                                 </div>
                                 <input
                                     type={'file'}
                                     name={'photo'}
-                                    value={formProduct.photo}
-                                    onChange={onFileChange}
+                                    onChange={onImageUpload}
                                 />
                             </div>
                             <div className="col-md-10 prf">

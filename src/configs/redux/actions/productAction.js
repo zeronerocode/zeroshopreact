@@ -17,30 +17,30 @@ export const getProduct = ({ page, limit }) => async (dispacth) => {
 
 export const insertProduct = ({ dataForm, navigate }) => async (dispacth) => {
     try {
-        dispacth({ type: 'ADD_PRODUCT_PENDING' })
+        dispacth({ type: string.ADD_PRODUCT_PENDING })
         const { data } = await axios.post('http://localhost:4000/products', dataForm, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
         const dataProduct = data.data
-        dispacth({ type: 'ADD_PRODUCT_SUCCESS', payload: dataProduct })
+        dispacth({ type: string.ADD_PRODUCT_SUCCESS, payload: dataProduct })
         navigate('/home')
     } catch (error) {
-        dispacth({ type: 'ADD_PRODUCT_ERROR', payload: error.response })
+        dispacth({ type: string.ADD_PRODUCT_ERROR, payload: error.response })
     }
 }
 
-export const getDetailProduct = ({ dataForm, navigate,idProduct }) => async (dispacth) => {
+export const getDetailProduct = (id) => async (dispacth) => {
     try {
-        dispacth({ type: 'GET_DETAIL_PRODUCT_PENDING' })
-        const {id} = idProduct;
+        dispacth({ type: string.GET_DETAIL_PRODUCT_PENDING })
         const { data } = await axios({
             url: 'http://localhost:4000/products/'+id,
             method: 'GET'
         })
-        dispacth({ type: 'GET_DETAIL_PRODUCT_SEUCCESS', payload: { detailProduct: data.data[0], pagination: data.pagination } })
+        const detailProduct =  data.data
+        dispacth({ type: string.GET_DETAIL_PRODUCT_SUCCESS, payload: {detailProduct} })
     }catch(error) {
-        dispacth({ type: 'GET_DETAIL_PRODUCT_ERROR', payload: error.response })
+        dispacth({ type: string.GET_DETAIL_PRODUCT_ERROR, payload: error.response })
     }
 }

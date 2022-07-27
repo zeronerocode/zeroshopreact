@@ -1,46 +1,38 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailProduct } from '../../configs/redux/actions/productAction'
 import { Navbar } from '../../components'
 import { FaStar } from 'react-icons/fa';
 import './product.css'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 const Product = () => {
-    const [page, setPage] = useState({
-        currentPage: 1,
-        limit: 6,
-    })
-    const idProduct = useParams()
-    const { data, detailProduct } = useSelector((state) => state.product);
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getDetailProduct({
-            idProduct
-        }))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page])
+    const {detail: {detailProduct}} = useSelector((state)=>state.product)
+    const params = useParams()
+    useEffect(()=>{
+      dispatch(getDetailProduct(params.id))
+    },[])
+
+    console.log("page =>",detailProduct);
     return (
         <div>
             <Navbar />
             <div className='container my-5'>
                 <p style={{ color: "gray" }}>Home  &gt;  category  &gt;  T-Shirt</p>
                 <div className='row my-5'>
-                    {detailProduct && detailProduct.map((detProduct) => (
-                        <div className='col-md-4'>
-                            <img src={detProduct.photo} alt="" />
-                        </div>
-                    ))}
                     <div className='col-md-4'>
-                        <img src={'/img/1de17b40-c750-40ed-a618-ca2c5ee79da0 1.png'} alt="" />
+                        <img src={detailProduct?.photo} alt="" />
                     </div>
                     <div className='col-md-8'>
-                        <h3>Baju Muslim Pria</h3>
+                        <h3>{detailProduct?.name}</h3>
                         <p>Zalora Cloth</p>
                         <FaStar /><FaStar /><FaStar /><FaStar /><FaStar /><span>10</span>
                         <p>Price</p>
-                        <h3>$40.0</h3>
+                        <h3>Rp. {detailProduct?.price}</h3>
                         <p>color</p>
                         <button className="btn btn-success crl"></button>
                         <button className="btn btn-warning crl"></button>
@@ -68,7 +60,7 @@ const Product = () => {
                     <p>In ultricies rutrum tempus. Mauris vel molestie orci.</p>
                     <hr />
                 </div>
-                <div className='container'>
+                {/* <div className='container'>
                     <h2>you can also like this</h2>
                     <p>You’ve never seen it before!</p>
                     <div className='row d-flex justify-content-between'>
@@ -85,7 +77,7 @@ const Product = () => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
