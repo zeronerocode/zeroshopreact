@@ -39,6 +39,7 @@ export const getDetailProduct = (id) => async (dispacth) => {
             method: 'GET'
         })
         const detailProduct =  data.data
+        console.log("detail product =>",detailProduct);
         dispacth({ type: string.GET_DETAIL_PRODUCT_SUCCESS, payload: {detailProduct} })
     }catch(error) {
         dispacth({ type: string.GET_DETAIL_PRODUCT_ERROR, payload: error.response })

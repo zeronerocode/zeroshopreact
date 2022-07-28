@@ -1,3 +1,4 @@
+import * as string from '../string.js'
 const initialState = {
     user: {
         name: '',
@@ -9,12 +10,12 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case action.type === 'USER_LOGIN_PENDING':
+        case string.USER_LOGIN_PENDING:
             return {
                 ...state,
                 isLoading: true
             }
-        case action.type === 'USER_LOGIN_SUCCESS':
+        case string.USER_LOGIN_SUCCESS:
             return {
                 ...state,
                 user: action.payload,

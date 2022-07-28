@@ -1,7 +1,7 @@
 import * as string from '../string.js'
 const initialState = {
     data: [],
-    detail: null,
+    detail: [],
     pagination: {
         currentPage: 0,
         limit: 0,
