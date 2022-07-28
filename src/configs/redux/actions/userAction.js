@@ -9,9 +9,8 @@ export const loginUser = (dataForm, navigate)=> async(dispatch)=>{
         localStorage.setItem('refreshToken', user.refreshToken)
         dispatch({type: string.USER_LOGIN_SUCCESS, payload: user})
         navigate('/home')
-
     } catch (error) {
-        console.log(error);
+        dispatch({ type: string.USER_LOGIN_ERROR, payload: error.response })
     }
 }
 

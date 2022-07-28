@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Cart, Category, CustomerLogin, CustomerRegister, Home, MyBag, Product, Profile, SellProduct, UploadFile} from './page'
-import RequireAuth from './components/RequireAuth';
+// import RequireAuth from './components/RequireAuth';
 
 const App = () => {
   return(

@@ -20,9 +20,9 @@ const Navbar = () => {
                 </form>
             </div>
             <div>
-                <Button className={styles.shpcart}><FaShoppingCart/></Button>
-                <Button className={styles.login} type="submit">Login</Button>
-                <Button className={styles.register} type="submit">Register</Button>
+                <Link to={'/cart'}><Button className={styles.shpcart}><FaShoppingCart/></Button></Link>
+                <Link to={'/user/login'}><Button className={styles.login} type="submit">Login</Button></Link>
+                <Link to={'/user/register'}><Button className={styles.register} type="submit">Register</Button></Link>
             </div>
 
         </nav>

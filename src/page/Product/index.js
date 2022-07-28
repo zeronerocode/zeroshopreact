@@ -24,13 +24,13 @@ const Product = () => {
     <div>
       <Navbar />
       <div className="container my-5">
-        <p style={{ color: "gray" }}>Home &gt; category &gt; T-Shirt</p>
+        <p style={{ color: "gray" }}>Home &gt; Category &gt; Kemeja</p>
         <div className="row my-5">
           <div className="col-md-4">
-            <img src={detailProduct?.photo} height="200" alt="" />
+            <img src={detailProduct?.photo} height="350" alt="" />
           </div>
           <div className="col-md-8">
-            <h3>{detailProduct?.name}</h3>
+            <h4>{detailProduct?.name}</h4>
             <p>Zalora Cloth</p>
             <FaStar />
             <FaStar />
@@ -39,7 +39,7 @@ const Product = () => {
             <FaStar />
             <span>10</span>
             <p>Price</p>
-            <h3>Rp. {detailProduct?.price}</h3>
+            <h4>Rp. {detailProduct?.price}</h4>
             <p>color</p>
             <button className="btn btn-success crl"></button>
             <button className="btn btn-warning crl"></button>
@@ -47,8 +47,8 @@ const Product = () => {
             <button className="btn btn-dark crl"></button>
             <br />
             <button className="btn btn-1 col-md-3 mx-2">Chat</button>
-            <button className="btn btn-1 col-md-3 mx-2">Add Bag</button>
-            <button className="btn btn-2 col-md-5 mx-2">Buy Now</button>
+            <Link to={'/mybag'} className="btn btn-1 col-md-3 mx-2">Add Bag</Link>
+            <Link to={'/cart'} className="btn btn-2 col-md-5 mx-2">Buy Now</Link>
           </div>
         </div>
         <div className="container">
