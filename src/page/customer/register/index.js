@@ -40,7 +40,7 @@ const CustomerRegister = () => {
                 <div className='form-group my-2'>
                     <input
                         className='col-md-4'
-                        type={'text'}
+                        type={'email'}
                         name={'email'}
                         value={formRegister.email}
                         onChange={handleChange}

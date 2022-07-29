@@ -4,7 +4,7 @@ import style from "./mybag.module.css";
 import { useNavigate } from "react-router-dom";
 
 const MyBag = () => {
-    const navigate = useNavigate
+    const navigate = useNavigate()
     const handleBuy = (e) => {
         navigate('/cart')
     }
