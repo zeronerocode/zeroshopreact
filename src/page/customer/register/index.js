@@ -30,7 +30,8 @@ const CustomerRegister = () => {
     return (
         <div className='container lgn text-center'>
             <div className='logo'>
-                <p>Please login with your account</p>
+                <img src={'/img/logo.png'} className='m-2' alt='logo' />
+                <p className='font-weight-bold'>Create account</p>
             </div>
             <div className='button-group'>
                 <button className='btn btn border border-primary bg-white'>Customer</button>

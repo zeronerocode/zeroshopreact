@@ -2,17 +2,22 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Input, Button } from '../../components'
 import styles from './navbar.module.css'
-import { FaSearch, FaFilter, FaShoppingCart } from 'react-icons/fa'
+import { FaSearch, FaFilter, FaShoppingCart, FaPowerOff } from 'react-icons/fa'
 import { BiEnvelope, BiBell } from 'react-icons/bi'
+import Swal from 'sweetalert2'
 const Navbar = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const handleLogout = ()=>{
-        // localStorage.removeItem('token')
-        // localStorage.removeItem('roleId')
-        // localStorage.removeItem('refreshToken')
         localStorage.clear()
-        navigate('/login')
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Logout Success',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        navigate('/user/login')
       }
     return (
         <nav className={styles.navbar}>
@@ -35,6 +40,7 @@ const Navbar = () => {
                 (<>
                 <Button className={styles.shpcart}><BiEnvelope/></Button>
                 <Button className={styles.shpcart}><BiBell/></Button>
+                <Button className={styles.shpcart} onClick={handleLogout}><FaPowerOff/></Button>
                 </>)
                 :
                 (<>

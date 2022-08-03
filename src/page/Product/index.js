@@ -6,20 +6,49 @@ import { getDetailProduct } from "../../configs/redux/actions/productAction";
 import { Navbar } from "../../components";
 import { FaStar } from "react-icons/fa";
 import "./product.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Product = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const params = useParams();
+  const { user } = useSelector((state) => state.user);
+  // const id = localStorage.getItem('user')
   const {
     detail: { detailProduct },
   } = useSelector((state) => state.product);
-  const params = useParams();
+  const [bagData, setBagData] = useState({
+    idUser: user.id,
+    idProduct: params.id,
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", user.id);
+    }
+  });
+
   useEffect(() => {
     dispatch(getDetailProduct(params.id));
   }, []);
 
-  console.log("page =>", { detailProduct });
+  const addToBag = async () => {
+    await axios.post(
+      `${process.env.REACT_APP_API_BACKEND}/transaction`,
+      bagData,
+      {}
+    );
+    Swal.fire({
+      position: 'top-end',
+      icon: 'Success',
+      title: 'Add to Bag Success',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    navigate('/cart')
+  };
+
   return (
     <div>
       <Navbar />
@@ -40,15 +69,17 @@ const Product = () => {
             <span>10</span>
             <p>Price</p>
             <h4>Rp. {detailProduct?.price}</h4>
-            <p>color</p>
-            <button className="btn btn-success crl"></button>
-            <button className="btn btn-warning crl"></button>
-            <button className="btn btn-danger crl"></button>
-            <button className="btn btn-dark crl"></button>
+            <p className="text-bold">color</p>
+            <button className="btn btn-success crl mr-2"></button>
+            <button className="btn btn-warning crl mr-2"></button>
+            <button className="btn btn-danger crl mr-2"></button>
+            <button className="btn btn-dark crl mr-2"></button>
             <br />
             <button className="btn btn-1 col-md-3 mx-2">Chat</button>
-            <Link to={'/mybag'} className="btn btn-1 col-md-3 mx-2">Add Bag</Link>
-            <Link to={'/cart'} className="btn btn-2 col-md-5 mx-2">Buy Now</Link>
+            <button onClick={addToBag} className="btn btn-1 col-md-3 mx-2">
+              Add Bag
+            </button>
+            <button className="btn btn-2 col-md-5 mx-2">Buy Now</button>
           </div>
         </div>
         <div className="container">

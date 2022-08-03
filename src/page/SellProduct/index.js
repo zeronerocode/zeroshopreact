@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react'
 import './sell.css'
@@ -22,9 +23,9 @@ const sellProduct = () => {
     const onImageUpload = (e) => {
         const file = e.target.files[0];
         setFormProduct({
+            ...formProduct,
             photo: file
         })
-        console.log("photo =>",file);
         setImagePreview(URL.createObjectURL(file));
       };
 
@@ -44,13 +45,13 @@ const sellProduct = () => {
         dataForm.append('stock', formProduct.stock)
         dataForm.append('description', formProduct.description)
         dataForm.append('idCategory', formProduct.idCategory)
-        console.log(formProduct.photo);
         // dispatch(insertProduct(dataForm, navigate))
-        const { data } = await axios.post('http://localhost:4000/products', dataForm, {
+        const { data } = await axios.post(`${process.env.REACT_APP_API_BACKEND}/products`, dataForm, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
+        navigate('/home')
     }
     return (
         <div>

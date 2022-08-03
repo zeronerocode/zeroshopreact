@@ -31,11 +31,11 @@ const Home = () => {
       <div className='container my-5'>
         <h2>New</h2>
         <p style={{ color: 'gray' }}>You’ve never seen it before!</p>
-        <div className='row d-flex justify-content-between'>
+        <div className='row'>
           {isLoading ? 'loading' : data && data.map((item) => (
-            <div className='col-md-2'>
-              <div className="card" onClick={() => navigate('/product/'+item.id)} key={item.id} style={{ width: '208px' }}>
-                <img className="card-img-top" src={item.photo} alt="Card" />
+            <div className='col-md-3'>
+              <div className="card" onClick={() => navigate('/product/'+item.id)} key={item.id} style={{ width: '238px' }}>
+                <img className="card-img-top" src={item.photo} height={160} width={200} alt="Card" />
                 <div className="card-body">
                   <h5 className="card-title">{item.name}</h5>
                   <p className="card-text">Rp {item.price}</p>

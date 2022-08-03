@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './login.css'
+import style from './login.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../configs/redux/actions/userAction'
 import { Link, useNavigate, } from 'react-router-dom'
@@ -28,11 +28,12 @@ const CustomerLogin = () => {
     return (
         <div className='container lgn text-center'>
             <div className='logo'>
-                <p>Please login with your account</p>
+                <img src={'/img/logo.png'} className='m-2' alt='logo' />
+                <p className='font-weight-bold'>Please login with your account</p>
             </div>
             <div className='button-group'>
-                <button className='btn btn border border-primary bg-white'>Customer</button>
-                <button className='btn text-white bg-danger'>Seller</button>
+                <button className='btn text-white bg-danger '>Customer</button>
+                <button className='btn border border-primary bg-white'>Seller</button>
             </div>
             <form onSubmit={handleLogin} className='form sign-in  d-flex flex-column justify-content-center'>
                 <div className='form-group my-2'>
@@ -56,7 +57,7 @@ const CustomerLogin = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <p className="float-right">Forgot Password ?</p>
+                    <p className="text-right mr-10">Forgot Password ?</p>
                     <button className='btn btn-input btn-success bg-danger col-lg-4'>{isLoading ? 'loading..': 'Login'}</button>
                 </div>
                 <div className="detail">
