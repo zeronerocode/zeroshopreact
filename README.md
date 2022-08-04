@@ -52,7 +52,7 @@ npm run build
 </span>
 
 ## Backend
-* [`BACKEND`](https://github.com/zeronerocode/HireJobServer)
+* [`BACKEND`](https://github.com/zeronerocode/ZeroShopServer)
 
 ## Deploy
 * 
