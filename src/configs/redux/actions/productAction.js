@@ -44,18 +44,7 @@ export const insertProduct =
       dispacth({ type: string.ADD_PRODUCT_ERROR, payload: error.response });
     }
   };
-  // export const UpdateProduct =
-  // (id, data) =>
-  // async (dispacth) => {
-  //   try {
-  //     dispacth({ type: string.UPDATE_PRODUCT_PENDING });
-  //     const {data:resData} = await axios.put(`'http://localhost:4000/products/${id}`, data);
-  //     dispatch({type: string.UPDATE_PRODUCT_SUCCESS})
-  //     resolve(resData.data)
-  //   } catch (error) {
-  //     dispacth({ type: string.UPDATE_PRODUCT_ERROR, payload: error.response });
-  //   }
-  // };
+  
   export const updateProduct = (id, data) =>  dispatch => {
     return new Promise(async(resolve, reject)=>{
       console.log('id =>',id);
@@ -84,7 +73,9 @@ export const getDetailProduct = (id) => async (dispacth) => {
       type: string.GET_DETAIL_PRODUCT_SUCCESS,
       payload: { detailProduct },
     });
-  } catch (error) {
+    return detailProduct 
+  } 
+  catch (error) {
     dispacth({
       type: string.GET_DETAIL_PRODUCT_ERROR,
       payload: error.response,

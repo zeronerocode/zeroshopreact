@@ -19,7 +19,7 @@ const Cart = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
-    await axios.post(
+    await axios.patch(
       `${process.env.REACT_APP_API_BACKEND}/transaction`,
       bagData,
       {}

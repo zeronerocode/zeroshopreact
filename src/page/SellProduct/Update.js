@@ -178,7 +178,7 @@ const Update = () => {
                         <div className="col-md-11 photo">
                             <div className="row d-flex justify-content-between">
                                 <div className="col-md-2 photo-1">
-                                    <img src={formProduct.photo} alt='preview'/>
+                                    <img src={formProduct.photo} height={'200'} alt='preview'/>
                                 </div>
                             </div>
                         </div>

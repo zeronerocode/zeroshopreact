@@ -41,7 +41,7 @@ const Product = () => {
     );
     Swal.fire({
       position: 'top-end',
-      icon: 'Success',
+      icon: 'success',
       title: 'Add to Bag Success',
       showConfirmButton: false,
       timer: 1500
