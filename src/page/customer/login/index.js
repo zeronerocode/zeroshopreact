@@ -57,7 +57,7 @@ const CustomerLogin = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <p className="text-right mr-10">Forgot Password ?</p>
+                    <p className="mr-10">Forgot Password ?</p>
                     <button className='btn btn-input btn-success bg-danger col-lg-4'>{isLoading ? 'loading..': 'Login'}</button>
                 </div>
                 <div className="detail">

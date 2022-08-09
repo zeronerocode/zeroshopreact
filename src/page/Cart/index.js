@@ -70,30 +70,33 @@ const Cart = () => {
             </div>
           </div>
           <div className="col-md-4">
+          {bagData &&
+                bagData.map((item) => (
             <div className={style.summary}>
               <h5>Shopping Summary</h5>
               <p>
                 Order{" "}
-                <span className="float-right font-weight-bold">$40.0</span>
+                <span className="float-right font-weight-bold">Rp. {item.price}</span>
               </p>
               <p>
                 Delivery{" "}
-                <span className="float-right font-weight-bold">$5.0</span>
+                <span className="float-right font-weight-bold">Free</span>
               </p>
               <hr />
               <p>
                 Shopping Summary{" "}
                 <span className="float-right text-danger font-weight-bold">
-                  $45.0
+                Rp. {item.price}
                 </span>
               </p>
               <button
                 className="btn col-md-12 text-white"
                 onClick={handleCheckout}
               >
-                Select Payment
+                Checkout
               </button>
             </div>
+            ))}
           </div>
         </div>
       </div>
