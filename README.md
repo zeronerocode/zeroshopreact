@@ -3,7 +3,7 @@
 <p align="center">
 </p>
 <p align="center">
-  Built with React Js.
+  Zerostore is an E-Commerce that provides a variety of goods for your needs, Zerostore offers goods with the best quality and affordable prices
 </p>
 
 ## About
