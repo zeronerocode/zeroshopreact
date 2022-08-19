@@ -53,8 +53,7 @@ npm run build
 
 | Landing Page  | Product Detail Page |
 | ------------- | ------------- |
-| ![Landing](/public/screenshot/e-commerser-home.png?raw=true "Landing Page") | ![Product Detail](public/screenshot/product.png?raw=true "Product Detail Page") |
-
+| ![Landing](/public/screenshot/e-commerser-home.png?raw=true "Landing Page") | ![Product Detail](/public/screenshot/e-commerser%20product.png?raw=true "Product Detail Page") |
 
 |Checkout Page |
 |------------- |
